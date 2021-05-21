@@ -13,7 +13,7 @@ generator client {
 model User {
     id          String       @id @default(uuid())
     email       String       @unique @db.VarChar(255)
-    bio         String?
+    bio         String?      @db.Text()
     bio_pic     String       @db.VarChar(255)
     collections Collection[]
     posts       Post[]
