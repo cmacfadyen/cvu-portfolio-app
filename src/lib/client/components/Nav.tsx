@@ -1,7 +1,10 @@
+/**
+ * Navigation component
+ */
 import { classNames, homepage } from '../util';
 import { Fragment, useState, useEffect } from 'react';
-import { Disclosure, Menu } from '@headlessui/react';
-import { MdClose, MdMenu, MdNotifications, MdAdd } from 'react-icons/md';
+import { Disclosure, Menu } from '@headlessui/react'; //for accordion effect on buttons
+import { MdClose, MdMenu, MdNotifications, MdAdd } from 'react-icons/md'; //icons
 import { Session, useSession, signOut } from 'next-auth/client';
 
 export interface NavProps {
@@ -13,7 +16,7 @@ export default function Nav(props: NavProps){
     let nav = [];
 
     if(!loading){
-        if(session){
+        if(session){ //if user is logged in
             nav = [
                 {name: <><MdAdd className="inline mr-1"/>New Collection</>, href: '/collection/new', cta: true},
                 {name: 'Collections', href: '/collections'},
@@ -23,7 +26,7 @@ export default function Nav(props: NavProps){
                     {name: 'Sign out', onClick: () => signOut()}
                 ]}
             ]
-        }else{
+        }else{  //if user is not logged in
             nav = [
                 {name: 'About', href: '/about'},
                 {name: 'Support', href: '/support'}
@@ -32,14 +35,16 @@ export default function Nav(props: NavProps){
     }
 
     return (
+        //Disclosure shows a (open) panel when a button is clicked
         <Disclosure as="nav" className="border-b border-gray-300">
             {({ open }) => (
                 <>
                     <div className="px-2 sm:px-6 lg:px-8">
                         <div className="relative flex items-center justify-between h-16 max-w">
                             <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
+                                //Disclosure makes an "accordion" button
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-indigo-500 focus:outline-none">
-                                    {open ?
+                                    {open ? 
                                         <MdClose className="block h-6 w-6"/>
                                         :
                                         <MdMenu className="block h-6 w-6"/>
