@@ -1,3 +1,8 @@
+/**
+ * Shows a user profile
+ * 
+ */
+
 import Layout from '../../lib/client/components/Layout';
 import Cta from '../../lib/client/components/Cta';
 import Error from '../../lib/client/components/Error';
